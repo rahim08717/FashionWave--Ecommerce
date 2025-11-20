@@ -67,19 +67,31 @@
             <li class="">
                 <a class="has-arrow" href="#">
                     <i class="fab fa-product-hunt"></i>
-                    <span>Products</span>
+                    <span>Products & Inventory</span>
                 </a>
                 <ul>
                     <li class="">
-                        <a href="create-product.html">
+                        <a href="{{ route('admin.suppliers.index') }}">
                             <i class="fa fa-circle"></i>
-                            <span>Add Product</span>
+                            <span>Suppliers</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="{{ route("admin.products.index") }}">
+                            <i class="fa fa-circle"></i>
+                            <span>Products</span>
                         </a>
                     </li>
                     <li class="">
                         <a href="products.html">
                             <i class="fa fa-circle"></i>
-                            <span>Product List</span>
+                            <span>Purchases</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="products.html">
+                            <i class="fa fa-circle"></i>
+                            <span>Stock</span>
                         </a>
                     </li>
                 </ul>

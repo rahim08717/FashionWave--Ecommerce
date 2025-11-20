@@ -9,7 +9,9 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\StatesController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\GatewayController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SlidersController;
@@ -19,9 +21,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\subscribersController;
 use App\Http\Controllers\Admin\testimonialController;
-use App\Http\Controllers\Admin\CountryController;
-use App\Http\Controllers\Admin\StatesController;
-
+use App\Http\Controllers\Admin\SuppliersController;
+use App\Http\Controllers\Admin\ProductsController;
 
 
 
@@ -152,5 +153,22 @@ Route::prefix('admin')->group(function () {
         Route::get('/states/edit/{id}', [StatesController::class, 'edit'])->name('admin.states.edit');
         Route::put('/states/update/{id}', [StatesController::class, 'update'])->name('admin.states.update');
         Route::delete('/states/delete/{id}', [StatesController::class, 'destroy'])->name('admin.states.destroy');
+
+        //suppliers route
+        Route::get('/suppliers', [SuppliersController::class, 'index'])->name('admin.suppliers.index');
+        Route::get('/suppliers/create', [SuppliersController::class, 'create'])->name('admin.supplier.create');
+        Route::post('/suppliers/store', [SuppliersController::class, 'store'])->name('admin.supplier.store');
+        Route::get('/suppliers/edit/{id}', [SuppliersController::class, 'edit'])->name('admin.supplier.edit');
+        Route::put('/suppliers/update/{id}', [SuppliersController::class, 'update'])->name('admin.supplier.update');
+        Route::delete('/suppliers/delete/{id}', [SuppliersController::class, 'destroy'])->name('admin.suppliers.delete');
+        //products route
+
+        Route::get('/products', [ProductsController::class, 'index'])->name('admin.products.index');
+        Route::get('/products/create', [ProductsController::class, 'create'])->name('admin.product.create');
+        Route::post('/products/store', [ProductsController::class, 'store'])->name('admin.product.store');
+        Route::get('/products/edit/{id}', [ProductsController::class, 'edit'])->name('admin.product.edit');
+        Route::put('/products/update/{id}', [ProductsController::class, 'update'])->name('admin.product.update');
+        Route::delete('/products/delete/{id}', [ProductsController::class, 'destroy'])->name('admin.products.delete');
+        Route::get('/products/show/{id}', [ProductsController::class, 'show'])->name('admin.product.show');
     });
 });
