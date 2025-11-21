@@ -89,9 +89,15 @@
                         </a>
                     </li>
                     <li class="">
-                        <a href="products.html">
+                        <a href="{{ route('admin.stocks.index') }}">
                             <i class="fa fa-circle"></i>
-                            <span>Stock</span>
+                            <span>Stock List</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="{{ route('admin.stocks.current_stock') }}">
+                            <i class="fa fa-circle"></i>
+                            <span>current_stock</span>
                         </a>
                     </li>
                 </ul>

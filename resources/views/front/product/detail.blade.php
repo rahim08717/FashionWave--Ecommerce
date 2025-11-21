@@ -412,9 +412,13 @@
                                     <span class="regular-price">{{ $related_product->price }}</span>
                                     <span class="price">{{ $related_product->discounted_price }}</span>
                                 </div>
+                                @if (getCurrentStock($product->id) > 0)
                                 <a href="javascript:void(0)" title="Add To Cart" class="add-cart addCart"
                                     data-id="{{ $product->id }}">Add To
                                     Cart <i class="icon fas fa-plus-circle"></i></a>
+                                    @else
+                                    <span class="text-danger">Stock Out</span>
+                                    @endfi
                             </div>
                         </div>
                     </div>

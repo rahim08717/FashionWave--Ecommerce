@@ -16,5 +16,9 @@ class Stock extends Model
         'reference_type',
         'reference_id',
         'notes'
-    ];
+    ];public function ProductName()
+     {
+        return $this->belongsTo(Product::class,'product_id');
+     }
+
 }

@@ -1,17 +1,17 @@
 @extends('front.layouts.app')
 
-@section('title',$category->meta_title)
-@section('description',$category->meta_description)
-@section('keywords',$category->meta_keyword)
+@section('title', $category->meta_title)
+@section('description', $category->meta_description)
+@section('keywords', $category->meta_keyword)
 
 @section('content')
 
- <!-- breadcrumb area start here  -->
+    <!-- breadcrumb area start here  -->
     <div class="breadcrumb-area">
         <div class="container">
             <div class="breadcrumb-wrap text-center">
                 <h2 class="page-title">
-                    {{$category->meta_title ?? "" }}
+                    {{ $category->meta_title ?? '' }}
                 </h2>
                 <ul class="breadcrumb-pages">
                     <li class="page-item"><a class="page-item-link" href="http://127.0.0.1:8000">Home</a>
@@ -78,16 +78,16 @@
                         <div class="single-widget colors-widget">
                             <h3 class="widget-title">Colors</h3>
                             <div class="colors-list">
-                                 @foreach ($colors as $color)
+                                @foreach ($colors as $color)
                                     <div class="single-colors">
-                                    <div class="colors-left">
-                                        <input style="background: {{ $color->color_code }}" class="form-check-input checkColor"
-                                            type="checkbox" id="#FF0000" value="{{ $color->id}}">
-                                        <label class="form-check-label" for="#FF0000">{{ $color->color ?? "" }}</label>
+                                        <div class="colors-left">
+                                            <input style="background: {{ $color->color_code }}"
+                                                class="form-check-input checkColor" type="checkbox" id="#FF0000"
+                                                value="{{ $color->id }}">
+                                            <label class="form-check-label" for="#FF0000">{{ $color->color ?? '' }}</label>
+                                        </div>
+                                        <span class="colors-count">{{ $color->count ?? '' }}</span>
                                     </div>
-                                    <span class="colors-count">{{ $color->count ?? "" }}</span>
-                                </div>
-
                                 @endforeach
 
 
@@ -99,10 +99,10 @@
                             <div class="size-list">
                                 @foreach ($sizes as $size)
                                     <div class="single-size">
-                                    <input class="form-check-input checkSize" type="checkbox" id="1"
-                                        value="{{ $size->id }}">
-                                    <label class="form-check-label" for="1">{{ $size->size }}</label>
-                                </div>
+                                        <input class="form-check-input checkSize" type="checkbox" id="1"
+                                            value="{{ $size->id }}">
+                                        <label class="form-check-label" for="1">{{ $size->size }}</label>
+                                    </div>
                                 @endforeach
 
                             </div>
@@ -119,7 +119,8 @@
                                     <button class="sidebar-filter d-block d-lg-none" type="button"
                                         data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
                                         aria-controls="offcanvasExample">
-                                        Filter <img src="{{ asset('front/assets/images/angle-down.svg') }}" alt="angle-down" />
+                                        Filter <img src="{{ asset('front/assets/images/angle-down.svg') }}"
+                                            alt="angle-down" />
                                     </button>
                                     <div class="list-grid-view">
                                         <a href="/product/category/1" class="view-btn grid-view active"><img
@@ -135,8 +136,8 @@
                                             <option value="stop">Categories</option>
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->slug }}">
-                                                {{ $category->en_category_name ?? "" }}
-                                            </option>
+                                                    {{ $category->en_category_name ?? '' }}
+                                                </option>
                                             @endforeach
 
                                         </select>
@@ -149,53 +150,62 @@
                         <div class="product-list">
                             <div class="row">
 
-                                @foreach ($products as $product )
-                               <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6">
-                                    <div class="single-grid-product">
-                                        <div class="product-top">
-                                            <a href="{{ route('product.detail',$product->slug) }}"><img class="product-thumbnal"
-                                                    src="{{ asset("front/assets/images/products/$product->product_image") }}" alt="product" />
+                                @foreach ($products as $product)
+                                    <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6">
+                                        <div class="single-grid-product">
+                                            <div class="product-top">
+                                                <a href="{{ route('product.detail', $product->slug) }}"><img
+                                                        class="product-thumbnal"
+                                                        src="{{ asset("front/assets/images/products/$product->product_image") }}"
+                                                        alt="product" />
 
-                                            <div class="product-flags">
-                                                <span class="product-flag sale">NEW</span>
-                                                <span class="product-flag discount">-10.00</span>
+                                                    <div class="product-flags">
+                                                        <span class="product-flag sale">NEW</span>
+                                                        <span class="product-flag discount">-10.00</span>
+                                                    </div>
+                                                    <ul class="prdouct-btn-wrapper">
+                                                        <li class="single-product-btn">
+                                                            <a href="{{ route('compare.add', $product->id) }}"
+                                                                class="product-btn CompareList" title="Add To Compare"><i
+                                                                    class="icon flaticon-bar-chart"></i></a>
+                                                        </li>
+                                                        <li class="single-product-btn">
+                                                            <a href="{{ route('wishlist.add', $product->id) }}"
+                                                                class="product-btn " title="Add To Wishlist"><i
+                                                                    class="icon flaticon-like"></i></a>
+                                                        </li>
+                                                    </ul>
                                             </div>
-                                            <ul class="prdouct-btn-wrapper">
-                                                <li class="single-product-btn">
-                                                    <a href="{{ route('compare.add',$product->id) }}" class="product-btn CompareList"
-                                                        title="Add To Compare"><i
-                                                            class="icon flaticon-bar-chart"></i></a>
-                                                </li>
-                                                <li class="single-product-btn">
-                                                    <a href="{{ route('wishlist.add', $product->id) }}" class="product-btn " title="Add To Wishlist"><i
-                                            class="icon flaticon-like"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-info text-center">
-                                            <h4 class="product-catagory">{{ $product->brand->en_brand_name }} - {{ $product->category->en_category_name }}</h4>
-                                            <input type="hidden" name="quantity" value="1" id="product_quantity">
-                                            <h3 class="product-name"><a class="product-link"
-                                                    href="{{ route('product.detail',$product->slug) }}">{{ $product->en_name ?? ""}}</a>
-                                            </h3>
-                                            <!-- This is server side code. User can not modify it. -->
-                                            <ul class="product-review">
-                                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                            </ul>
-                                            <div class="product-price">
-                                                <span class="regular-price">{{ $product->price ?? ""}}</span>
-                                                <span class="price">{{ $product->discounted_price ?? ""}}</span>
+                                            <div class="product-info text-center">
+                                                <h4 class="product-catagory">{{ $product->brand->en_brand_name }} -
+                                                    {{ $product->category->en_category_name }}</h4>
+                                                <input type="hidden" name="quantity" value="1"
+                                                    id="product_quantity">
+                                                <h3 class="product-name"><a class="product-link"
+                                                        href="{{ route('product.detail', $product->slug) }}">{{ $product->en_name ?? '' }}</a>
+                                                </h3>
+                                                <!-- This is server side code. User can not modify it. -->
+                                                <ul class="product-review">
+                                                    <li class="review-item"><i class="flaticon-star"></i></li>
+                                                    <li class="review-item"><i class="flaticon-star"></i></li>
+                                                    <li class="review-item"><i class="flaticon-star"></i></li>
+                                                    <li class="review-item"><i class="flaticon-star"></i></li>
+                                                    <li class="review-item"><i class="flaticon-star"></i></li>
+                                                </ul>
+                                                <div class="product-price">
+                                                    <span class="regular-price">{{ $product->price ?? '' }}</span>
+                                                    <span class="price">{{ $product->discounted_price ?? '' }}</span>
+                                                </div>
+                                                @if (getCurrentStock($product->id) > 0)
+                                                    <a href="javascript:void(0)" title="Add to cart"
+                                                        class="add-cart addCart" data-id="{{ $product->id }}">Add To
+                                                        Cart <i class="icon fas fa-plus-circle"></i></a>
+                                                        @else
+                                                        <span class="text-danger">Stock Out</span>
+                                                        @endif
                                             </div>
-
-                                            <a href="javascript:void(0)" title="Add to cart" class="add-cart addCart"
-                                                data-id="{{ $product->id }}">Add To Cart <i class="icon fas fa-plus-circle"></i></a>
                                         </div>
                                     </div>
-                                </div>
                                 @endforeach
 
                                 {{ $products->links('pagination::bootstrap-4') }}
@@ -331,23 +341,28 @@
                     <div class="size-list">
 
                         <div class="single-size">
-                            <input class="form-check-input checkSizeMobile" type="checkbox" id="1" value="S">
+                            <input class="form-check-input checkSizeMobile" type="checkbox" id="1"
+                                value="S">
                             <label class="form-check-label" for="1">S</label>
                         </div>
                         <div class="single-size">
-                            <input class="form-check-input checkSizeMobile" type="checkbox" id="2" value="M">
+                            <input class="form-check-input checkSizeMobile" type="checkbox" id="2"
+                                value="M">
                             <label class="form-check-label" for="2">M</label>
                         </div>
                         <div class="single-size">
-                            <input class="form-check-input checkSizeMobile" type="checkbox" id="3" value="L">
+                            <input class="form-check-input checkSizeMobile" type="checkbox" id="3"
+                                value="L">
                             <label class="form-check-label" for="3">L</label>
                         </div>
                         <div class="single-size">
-                            <input class="form-check-input checkSizeMobile" type="checkbox" id="4" value="XL">
+                            <input class="form-check-input checkSizeMobile" type="checkbox" id="4"
+                                value="XL">
                             <label class="form-check-label" for="4">XL</label>
                         </div>
                         <div class="single-size">
-                            <input class="form-check-input checkSizeMobile" type="checkbox" id="5" value="XXL">
+                            <input class="form-check-input checkSizeMobile" type="checkbox" id="5"
+                                value="XXL">
                             <label class="form-check-label" for="5">XXL</label>
                         </div>
 
@@ -415,37 +430,36 @@
 @endsection
 @push('script')
     <script>
-    $(document).on('click', '.addCart', function () {
-        let id = $(this).data('id');
+        $(document).on('click', '.addCart', function() {
+            let id = $(this).data('id');
 
-        $.ajax({
-            url: "{{ route('cart.add') }}",
-            method: "POST",
-            data: {
-                id: id,
-                _token: "{{ csrf_token() }}"
-            },
-            success: function (res) {
-                if (res.status === "success") {
-                    toastr.success(res.message);
-                    $(".totalCountItem").text(res.cartCount);
-                    $(".totalAmount").text("$ " + res.cartTotal);
+            $.ajax({
+                url: "{{ route('cart.add') }}",
+                method: "POST",
+                data: {
+                    id: id,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(res) {
+                    if (res.status === "success") {
+                        toastr.success(res.message);
+                        $(".totalCountItem").text(res.cartCount);
+                        $(".totalAmount").text("$ " + res.cartTotal);
+                    }
                 }
-            }
+            });
         });
-    });
 
-    // Auto load cart data on page load
-    $(document).ready(function () {
-        $.get("{{ route('cart.data') }}", function (res) {
-            $(".totalCountItem").text(res.cartCount);
-            $(".totalAmount").text("$ " + res.cartTotal);
+        // Auto load cart data on page load
+        $(document).ready(function() {
+            $.get("{{ route('cart.data') }}", function(res) {
+                $(".totalCountItem").text(res.cartCount);
+                $(".totalAmount").text("$ " + res.cartTotal);
+            });
         });
-    });
-</script>
+    </script>
 
-<script>
-
+    <script>
         $(document).ready(function() {
             $('.categorysearch').on('change', function() {
                 var slug = $(this).val();

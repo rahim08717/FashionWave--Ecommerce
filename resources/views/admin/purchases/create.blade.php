@@ -44,7 +44,6 @@
                         <div class="form-vertical__item bg-style p-4 mb-25">
                             <h3 class="mb-3">Purchases Details</h3>
                             
-
                             <div class="row">
 
                                 <div class="col-md-4 mb-3">

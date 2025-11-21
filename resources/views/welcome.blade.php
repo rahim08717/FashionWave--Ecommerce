@@ -144,8 +144,12 @@
                                 <span class="regular-price">{{ $product->price ?? "" }}</span>
                                 <span class="price">{{ $product->discounted_price ?? "" }}</span>
                             </div>
+                            @if (getCurrentStock($product->id) > 0)
                             <a href="javascript:void(0)" title="Add To Cart" class="add-cart addCart" data-id="{{ $product->id }}">Add
                                 To Cart <i class="icon fas fa-plus-circle"></i></a>
+                                @else
+                                <span class="text-danger add-cart addCart">Stock Out</span>
+                                @endif
                         </div>
                     </div>
                 </div>
@@ -427,6 +431,7 @@
                                         <span class="regular-price">{{ $isfeatured->price }}</span>
                                         <span class="price">{{ $isfeatured->discounted_price }}</span>
                                     </div>
+
                                     <a href="javascript:void(0)" title="Add To Cart" class="add-cart addCart"
                                         data-id="{{ $isfeatured->id }}">Add To Cart <i class="icon fas fa-plus-circle"></i></a>
                                 </div>

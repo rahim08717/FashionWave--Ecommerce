@@ -98,14 +98,14 @@
                             <div class="colors-list">
                                 @foreach ($colors as $color)
                                     <div class="single-colors">
-                                    <div class="colors-left">
-                                        <input style="background: {{ $color->color_code }}" class="form-check-input checkColor"
-                                            type="checkbox" id="#FF0000" value="{{ $color->id}}">
-                                        <label class="form-check-label" for="#FF0000">{{ $color->color ?? "" }}</label>
+                                        <div class="colors-left">
+                                            <input style="background: {{ $color->color_code }}"
+                                                class="form-check-input checkColor" type="checkbox" id="#FF0000"
+                                                value="{{ $color->id }}">
+                                            <label class="form-check-label" for="#FF0000">{{ $color->color ?? '' }}</label>
+                                        </div>
+                                        <span class="colors-count">{{ $color->count ?? '' }}</span>
                                     </div>
-                                    <span class="colors-count">{{ $color->count ?? "" }}</span>
-                                </div>
-
                                 @endforeach
 
 
@@ -117,10 +117,10 @@
                             <div class="size-list">
                                 @foreach ($sizes as $size)
                                     <div class="single-size">
-                                    <input class="form-check-input checkSize" type="checkbox" id="1"
-                                        value="{{ $size->id }}">
-                                    <label class="form-check-label" for="1">{{ $size->size }}</label>
-                                </div>
+                                        <input class="form-check-input checkSize" type="checkbox" id="1"
+                                            value="{{ $size->id }}">
+                                        <label class="form-check-label" for="1">{{ $size->size }}</label>
+                                    </div>
                                 @endforeach
 
                             </div>
@@ -200,13 +200,14 @@
                                                     </div>
                                                     <ul class="prdouct-btn-wrapper">
                                                         <li class="single-product-btn">
-                                                            <a href="{{ route('compare.add',$product->id) }}" class="product-btn CompareList"
-                                                                title="Add To Compare"><i
+                                                            <a href="{{ route('compare.add', $product->id) }}"
+                                                                class="product-btn CompareList" title="Add To Compare"><i
                                                                     class="icon flaticon-bar-chart"></i></a>
                                                         </li>
                                                         <li class="single-product-btn">
-                                                            <a href="{{ route('wishlist.add', $product->id) }}" class="product-btn " title="Add To Wishlist"><i
-                                            class="icon flaticon-like"></i></a>
+                                                            <a href="{{ route('wishlist.add', $product->id) }}"
+                                                                class="product-btn " title="Add To Wishlist"><i
+                                                                    class="icon flaticon-like"></i></a>
                                                         </li>
                                                     </ul>
                                             </div>
@@ -230,10 +231,15 @@
                                                     <span class="regular-price">{{ $product->price ?? '' }}</span>
                                                     <span class="price">{{ $product->discounted_price ?? '' }}</span>
                                                 </div>
+                                                @if (getCurrentStock($product->id) > 0)
+                                                    <a href="javascript:void(0)" title="Add to cart"
+                                                        class="add-cart addCart" data-id="{{ $product->id }}">
+                                                        Add To Cart <i class="icon fas fa-plus-circle"></i>
+                                                    </a>
+                                                @else
+                                                    <span class="text-danger">Stock Out</span>
+                                                @endif
 
-                                                <a href="javascript:void(0)" title="Add to cart" class="add-cart addCart"
-                                                    data-id="{{ $product->id }}">Add To Cart <i
-                                                        class="icon fas fa-plus-circle"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -499,6 +505,5 @@
                 }
             });
         });
-
     </script>
 @endpush

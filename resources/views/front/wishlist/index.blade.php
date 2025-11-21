@@ -81,9 +81,13 @@
                                         </td>
                                         <td>
                                             <div class="action-area">
+                                                @if (getCurrentStock($product->id) > 0)
                                                 <a href="javascript:void(0)" title="Add To Cart" data-id="{{$wishlist->product->id  }}"
                                                     class="add-cart action-btn addCart">Add To Cart <i
                                                         class="icon fas fa-plus-circle"></i></a>
+                                                        @else
+                                                        <span class="text-danger">Stock Out</span>
+                                                        @endif
                                             </div>
                                         </td>
                                         <td>

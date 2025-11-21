@@ -24,6 +24,9 @@ use App\Http\Controllers\Admin\testimonialController;
 use App\Http\Controllers\Admin\SuppliersController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\PurchasesController;
+use App\Http\Controllers\Admin\StocksController;
+
+
 
 
 
@@ -181,5 +184,9 @@ Route::prefix('admin')->group(function () {
          Route::put('/purchases/update/{id}', [PurchasesController::class, 'update'])->name('admin.purchases.update');
         Route::delete('/purchases/delete/{id}', [PurchasesController::class, 'destroy'])->name('admin.purchases.delete');
         // Route::get('/purchases/show/{id}', [PurchasesController::class, 'show'])->name('admin.purchases.show');
+    //stock routes
+    Route::get('/stocks', [StocksController::class, 'index'])->name('admin.stocks.index');
+    Route::get('/current-stock', [StocksController::class, 'currentStock'])->name('admin.stocks.current_stock');
+
     });
 });
