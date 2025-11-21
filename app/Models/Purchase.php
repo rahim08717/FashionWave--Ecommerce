@@ -16,14 +16,20 @@ class Purchase extends Model
         'purchases_date',
         'notes'
     ];
+    protected $casts = [
+    'purchases_date' => 'datetime',
+
+];
 
     public function supplier()
     {
-        return $this->belongsTo(Supplier::class);
+        return $this->belongsTo(Supplier::class,'supplier_id');
     }
 
     public function items()
     {
-        return $this->hasMany(PurchaseItem::class);
+        return $this->hasMany(PurchaseItem::class,'purchase_id');
     }
+
+
 }

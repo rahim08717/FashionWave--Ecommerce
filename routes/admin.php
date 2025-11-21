@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\subscribersController;
 use App\Http\Controllers\Admin\testimonialController;
 use App\Http\Controllers\Admin\SuppliersController;
 use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\Admin\PurchasesController;
 
 
 
@@ -170,5 +171,15 @@ Route::prefix('admin')->group(function () {
         Route::put('/products/update/{id}', [ProductsController::class, 'update'])->name('admin.product.update');
         Route::delete('/products/delete/{id}', [ProductsController::class, 'destroy'])->name('admin.products.delete');
         Route::get('/products/show/{id}', [ProductsController::class, 'show'])->name('admin.product.show');
+
+        //purchases routes
+
+        Route::get('/purchases', [PurchasesController::class, 'index'])->name('admin.purchases.index');
+         Route::get('/purchases/create', [PurchasesController::class, 'create'])->name('admin.purchases.create');
+         Route::post('/purchases/store', [PurchasesController::class, 'store'])->name('admin.purchases.store');
+        Route::get('/purchases/edit/{id}', [PurchasesController::class, 'edit'])->name('admin.purchases.edit');
+         Route::put('/purchases/update/{id}', [PurchasesController::class, 'update'])->name('admin.purchases.update');
+        Route::delete('/purchases/delete/{id}', [PurchasesController::class, 'destroy'])->name('admin.purchases.delete');
+        // Route::get('/purchases/show/{id}', [PurchasesController::class, 'show'])->name('admin.purchases.show');
     });
 });

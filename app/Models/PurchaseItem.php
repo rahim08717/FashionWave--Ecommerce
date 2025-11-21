@@ -17,8 +17,6 @@ class PurchaseItem extends Model
         'subtotal'
     ];
 
-    public function purchase()
-    {
-        return $this->belongsTo(Purchase::class);
-    }
+
+   
 }
